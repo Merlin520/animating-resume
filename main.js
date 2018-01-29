@@ -5,18 +5,18 @@
 // var css = Prism.highlight(text, Prism.languages.css);
 // console.log(css)
 //把code写到#code和style标签里
-function writeCode(code){
-    let domCode = document.querySelector('#code')
+function writeCode(prefix,code,fn){
+    let domCode = document.querySelector('#code');
+    domCode.innerHTML = prefix ||''//前缀
     let n = 0;
     let id = setInterval(function(){
     n = n +1;
     domCode.innerHTML = 
-    Prism.highlight(code.substring(0,n), Prism.languages.css);
-    styleTag.innerHTML = code.substring(0,n);
-    if(n >= result.length){
+    Prism.highlight(prefix + code.substring(0,n), Prism.languages.css);
+    styleTag.innerHTML = prefix + code.substring(0,n);
+    if(n >= code.length){
         window.clearInterval(id);
-        // fn2();
-        // fn3(result);
+        fn.call();
     }
 },10);
 }
@@ -68,9 +68,12 @@ var result = `
     /* 下面是我的自我介绍 */
     /* 我需要一个白板 */
 `
-
-
-
+var result2 = `
+#paper{
+    width:100px;height:100px;
+    background:red;
+}
+`
 // var n = 0;
 // var id = setInterval(function(){
 //     n = n +1;
@@ -84,13 +87,20 @@ var result = `
 //         fn3(result);
 //     }
 // },10);
+   
+    writeCode('',result,function(){
+        createPaper(function(){
+            writeCode(result,result2)
+        });
+    });
+  
 
-    writeCode(result);
 
-function fn2(){
+function createPaper(fn){
     var paper = document.createElement('div')
     paper.id = 'paper'
     document.body.appendChild(paper)
+    fn.call()
 }
 
 function fn3(preResult){
