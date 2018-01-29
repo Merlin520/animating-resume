@@ -61,7 +61,7 @@ var id = setInterval(function(){
     if(n >= result.length){
         window.clearInterval(id);
         fn2();
-        fn3();
+        fn3(result);
     }
 },10);
 
@@ -72,7 +72,7 @@ function fn2(){
     document.body.appendChild(paper)
 }
 
-function fn3(){
+function fn3(preResult){
     var result = `
     #paper{
         width:100px;height:100px;
@@ -82,7 +82,10 @@ function fn3(){
     var n = 0;
     var id = setInterval(function(){
         n = n +1;
-        code.innerHTML = code.innerHTML + result[n-1]
+        code.innerHTML =
+        preResult + result.substring(0,n);
+        code.innerHTML = 
+        Prism.highlight(code.innerHTML, Prism.languages.css);
         if(n >= result.length){
             window.clearInterval(id);
          }  
