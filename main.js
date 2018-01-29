@@ -4,6 +4,26 @@
 // // Returns a highlighted HTML string
 // var css = Prism.highlight(text, Prism.languages.css);
 // console.log(css)
+//把code写到#code和style标签里
+function writeCode(code){
+    let domCode = document.querySelector('#code')
+    let n = 0;
+    let id = setInterval(function(){
+    n = n +1;
+    domCode.innerHTML = 
+    Prism.highlight(code.substring(0,n), Prism.languages.css);
+    styleTag.innerHTML = code.substring(0,n);
+    if(n >= result.length){
+        window.clearInterval(id);
+        // fn2();
+        // fn3(result);
+    }
+},10);
+}
+
+
+
+
 
 var result = `
     /*  
@@ -51,20 +71,21 @@ var result = `
 
 
 
-var n = 0;
-var id = setInterval(function(){
-    n = n +1;
-    code.innerHTML = result.substring(0,n);
-    code.innerHTML = Prism.highlight(code.innerHTML, Prism.languages.css);
-    styleTag.innerHTML = result.substring(0,n);
+// var n = 0;
+// var id = setInterval(function(){
+//     n = n +1;
+//     code.innerHTML = result.substring(0,n);
+//     code.innerHTML = Prism.highlight(code.innerHTML, Prism.languages.css);
+//     styleTag.innerHTML = result.substring(0,n);
 
-    if(n >= result.length){
-        window.clearInterval(id);
-        fn2();
-        fn3(result);
-    }
-},10);
+//     if(n >= result.length){
+//         window.clearInterval(id);
+//         fn2();
+//         fn3(result);
+//     }
+// },10);
 
+    writeCode(result);
 
 function fn2(){
     var paper = document.createElement('div')
