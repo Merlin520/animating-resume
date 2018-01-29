@@ -14,6 +14,7 @@ function writeCode(prefix,code,fn){
     domCode.innerHTML = 
     Prism.highlight(prefix + code.substring(0,n), Prism.languages.css);
     styleTag.innerHTML = prefix + code.substring(0,n);
+    domCode.scrollTop = domCode.scrollHeight;//自动滚动(最大高度)
     if(n >= code.length){
         window.clearInterval(id);
         fn.call();
@@ -67,11 +68,28 @@ var result = `
 
     /* 下面是我的自我介绍 */
     /* 我需要一个白板 */
+
+#code {
+    position:fixed;
+    left:0;
+    width:50%;
+    height:100%;
+}
+
+#paper {
+    position:fixed;
+    right:0;
+    width:50%;
+    height:100%; 
+    background:yellow;
+}
+
+
+
 `
 var result2 = `
 #paper{
-    width:100px;height:100px;
-    background:red;
+
 }
 `
 // var n = 0;
