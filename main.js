@@ -4,6 +4,8 @@
 // // Returns a highlighted HTML string
 // var css = Prism.highlight(text, Prism.languages.css);
 // console.log(css)
+
+
 //把code写到#code和style标签里
 function writeCode(prefix,code,fn){
     let domCode = document.querySelector('#code');
@@ -19,18 +21,15 @@ function writeCode(prefix,code,fn){
         window.clearInterval(id);
         fn.call();
     }
-},10);
+},50);
 }
-
-
-
-
 
 var result = `
     /*  
-     * 你好召唤师！
-     * 我是来自德玛西亚的盖伦，
-     * 很乐意为您效劳！
+     * 你好面试官，
+     * 我是来自深圳的梅林！
+     * 谢谢你抽空给我面试的机会，
+     * 这是一个小demo，展示时间约为1min，希望你喜欢！
     */
    
     * {
@@ -43,7 +42,7 @@ var result = `
     }   
     
     #code {
-        border:1px solid red;
+       
         padding:16px;
     }
 
@@ -81,52 +80,40 @@ var result = `
     right:0;
     width:50%;
     height:100%; 
-    background:yellow;
+    background:white;
     display :flex;
     justify-content:center;
     align-items:center;
-    padding:10px;
 }
 
 #paper > .content {
-    background:green;
+    background:greenyellow;
     height:100%;
     width:100%;
 }
 
-
-
 `
-var result2 = `
-#paper{
-
-}
-`
+var result2 = `#paper{}`
 var md = `
-# 德玛西亚
-# 德玛西亚
-# 德玛西亚
-# 德玛西亚
-# 德玛西亚
-# 德玛西亚
-# 德玛西亚
-# 德玛西亚
-# 德玛西亚
-# 德玛西亚
-# 德玛西亚
-# 德玛西亚
-# 德玛西亚
-# 德玛西亚
-# 德玛西亚
-# 德玛西亚
-# 德玛西亚
-# 德玛西亚
-# 德玛西亚
-# 德玛西亚
-# 德玛西亚
-# 德玛西亚
-# 德玛西亚
-# 德玛西亚
+# 自我介绍
+我叫梅林
+1993年1月出生
+自学前端1年
+应聘前端开发岗位
+ 
+# 技能介绍
+Javascript Html Css
+
+# 项目介绍
+苹果风格轮播
+画板
+网易云音乐
+
+# 联系方式
+QQ  2491723965
+Email  meiya90hou@163.com
+
+欢迎来打扰！！！
 `
 // var n = 0;
 // var id = setInterval(function(){
@@ -161,11 +148,9 @@ function writeMarkdown(markdown,fn){
         window.clearInterval(id);
      fn.call();
     }
-},10);
+},30);
 
 }
-
-
 
 function createPaper(fn){
     var paper = document.createElement('div')
@@ -177,25 +162,25 @@ function createPaper(fn){
     fn.call()
 }
 
-function fn3(preResult){
-    var result = `
-    #paper{
-        width:100px;height:100px;
-        background:red;
-    }
-    `
-    var n = 0;
-    var id = setInterval(function(){
-        n = n +1;
-        code.innerHTML =
-        preResult + result.substring(0,n);
-        code.innerHTML = 
-        Prism.highlight(code.innerHTML, Prism.languages.css);
-        if(n >= result.length){
-            window.clearInterval(id);
-         }  
-    },50)
-}
+// function fn3(preResult){
+//     var result = `
+//     #paper{
+//         width:100px;height:100px;
+//         background:red;
+//     }
+//     `
+//     var n = 0;
+//     var id = setInterval(function(){
+//         n = n +1;
+//         code.innerHTML =
+//         preResult + result.substring(0,n);
+//         code.innerHTML = 
+//         Prism.highlight(code.innerHTML, Prism.languages.css);
+//         if(n >= result.length){
+//             window.clearInterval(id);
+//          }  
+//     },50)
+// }
 
 
 
