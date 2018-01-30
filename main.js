@@ -82,6 +82,16 @@ var result = `
     width:50%;
     height:100%; 
     background:yellow;
+    display :flex;
+    justify-content:center;
+    align-items:center;
+    padding:10px;
+}
+
+#paper > .content {
+    background:green;
+    height:100%;
+    width:100%;
 }
 
 
@@ -91,6 +101,32 @@ var result2 = `
 #paper{
 
 }
+`
+var md = `
+# 德玛西亚
+# 德玛西亚
+# 德玛西亚
+# 德玛西亚
+# 德玛西亚
+# 德玛西亚
+# 德玛西亚
+# 德玛西亚
+# 德玛西亚
+# 德玛西亚
+# 德玛西亚
+# 德玛西亚
+# 德玛西亚
+# 德玛西亚
+# 德玛西亚
+# 德玛西亚
+# 德玛西亚
+# 德玛西亚
+# 德玛西亚
+# 德玛西亚
+# 德玛西亚
+# 德玛西亚
+# 德玛西亚
+# 德玛西亚
 `
 // var n = 0;
 // var id = setInterval(function(){
@@ -108,15 +144,35 @@ var result2 = `
    
     writeCode('',result,function(){
         createPaper(function(){
-            writeCode(result,result2)
+            writeCode(result,result2,function(){
+                writeMarkdown(md);
+            })
         });
     });
   
+function writeMarkdown(markdown,fn){
+    let domPaper = document.querySelector('#paper>.content')
+    let n = 0;
+    let id = setInterval(function(){
+    n = n +1;
+    domPaper.innerHTML = markdown.substring(0,n);
+    domPaper.scrollTop = domPaper.scrollHeight;
+    if(n >= markdown.length){
+        window.clearInterval(id);
+     fn.call();
+    }
+},10);
+
+}
+
 
 
 function createPaper(fn){
     var paper = document.createElement('div')
     paper.id = 'paper'
+    var content = document.createElement('pre');
+    content.className = 'content';
+    paper.appendChild(content)
     document.body.appendChild(paper)
     fn.call()
 }
